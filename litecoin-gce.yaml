@@ -24,13 +24,15 @@ spec:
       labels:
         app: litecoin # has to match .spec.selector.matchLabels
     spec:
+      securityContext:
+        fsGroup: 999
       terminationGracePeriodSeconds: 30
       containers:
       - name: litecoin
         image: bcochran/lite:0.17.1
         resources:
           limits:
-            memory: "512Mi"
+            memory: "400Mi"
             cpu: "256m"
         volumeMounts:
         - name: litecoin

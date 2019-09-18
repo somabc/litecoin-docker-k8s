@@ -21,7 +21,8 @@ RUN curl -O https://download.litecoin.org/litecoin-0.17.1/linux/litecoin-0.17.1-
     mv litecoin-0.17.1/bin/* /usr/local/bin && \
     rm -rf litecoin-0.17.1 && \
     mkdir -p /home/litecoin /litecoin && \
-    chown -R litecoin:litecoin /home/litecoin /litecoin
+    chown -R litecoin:litecoin /home/litecoin /litecoin && \
+    echo "server=0" > "/litecoin/litecoin.conf"
 USER litecoin
 # Start the litecoin daemon and output to console
 ENTRYPOINT exec litecoind -datadir=/litecoin
