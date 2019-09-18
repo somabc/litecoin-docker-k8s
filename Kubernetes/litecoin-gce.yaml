@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: litecoin
+  labels:
+    app: litecoin
+spec:
+  clusterIP: None
+  selector:
+    app: litecoin
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: litecoin
+spec:
+  selector:
+    matchLabels:
+      app: litecoin # has to match .spec.template.metadata.labels
+  serviceName: "litecoin"
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: litecoin # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: litecoin
+        image: bcochran/litecoin:0.17.1
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "256m"
+        volumeMounts:
+        - name: litecoin
+          mountPath: /mnt/litecoin
+  volumeClaimTemplates:
+  - metadata:
+      name: litecoin
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
