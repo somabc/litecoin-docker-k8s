@@ -34,7 +34,7 @@ spec:
             cpu: "256m"
         volumeMounts:
         - name: litecoin
-          mountPath: /mnt/litecoin
+          mountPath: /litecoin
   volumeClaimTemplates:
   - metadata:
       name: litecoin

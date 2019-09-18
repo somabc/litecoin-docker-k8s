@@ -20,8 +20,8 @@ RUN curl -O https://download.litecoin.org/litecoin-0.17.1/linux/litecoin-0.17.1-
     chown -R litecoin:litecoin litecoin-0.17.1 && \
     mv litecoin-0.17.1/bin/* /usr/local/bin && \
     rm -rf litecoin-0.17.1 && \
-    mkdir -p /home/litecoin && \
-    chown -R litecoin:litecoin /home/litecoin
+    mkdir -p /home/litecoin /litecoin && \
+    chown -R litecoin:litecoin /home/litecoin /litecoin
 USER litecoin
 # Start the litecoin daemon and output to console
-ENTRYPOINT [ "litecoind" ]
+ENTRYPOINT exec litecoind -datadir=/litecoin
