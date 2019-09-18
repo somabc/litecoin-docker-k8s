@@ -27,7 +27,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: litecoin
-        image: bcochran/litecoin:0.17.1
+        image: bcochran/lite:0.17.1
         resources:
           limits:
             memory: "512Mi"
