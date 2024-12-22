@@ -1,6 +1,6 @@
 # Start with an Ubuntu 18.04 LTS image.
 FROM ubuntu:bionic
-MAINTAINER Bryan Cochrane "bryan.cochrane@gmail.com"
+MAINTAINER somabc "somabc@gmail.com"
 # Update package list.
 RUN apt-get update
 # Upgrade all packages.
